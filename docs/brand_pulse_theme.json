@@ -1,0 +1,21 @@
+{
+  "name": "Brand Pulse",
+  "dataColors": ["#0B8A5B", "#E4572E", "#F2A541", "#3B6EA5", "#8A94A6", "#2D3142"],
+  "background": "#FFFFFF",
+  "foreground": "#2D3142",
+  "tableAccent": "#0B8A5B",
+  "good": "#0B8A5B",
+  "neutral": "#F2A541",
+  "bad": "#E4572E",
+  "textClasses": {
+    "callout": {"fontSize": 34, "fontFace": "Segoe UI Semibold", "color": "#2D3142"},
+    "title": {"fontSize": 13, "fontFace": "Segoe UI Semibold", "color": "#2D3142"},
+    "label": {"fontSize": 10, "fontFace": "Segoe UI", "color": "#6B7280"}
+  },
+  "visualStyles": {
+    "*": {"*": {
+      "background": [{"show": true, "color": {"solid": {"color": "#FFFFFF"}}, "transparency": 0}],
+      "border": [{"show": true, "color": {"solid": {"color": "#E3E7EC"}}, "radius": 10}]
+    }}
+  }
+}
