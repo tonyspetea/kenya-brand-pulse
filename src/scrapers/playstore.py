@@ -1,3 +1,4 @@
+import time
 import pandas as pd
 from google_play_scraper import reviews, Sort
 from textblob import TextBlob
@@ -8,10 +9,19 @@ APPS = {
     # "KCB": "...", "Equity": "...",  add more here
 }
 
-def scrape(brand, app_id, n=500):
-    rows, _ = reviews(app_id, lang="en", country="ke",
-                      sort=Sort.NEWEST, count=n)
-    df = pd.DataFrame(rows)[["reviewId", "content", "score", "thumbsUpCount", "at"]]
+def scrape(brand, app_id, n=315000):
+    all_rows, token = [], None
+    while len(all_rows) < n:
+        rows, token = reviews(app_id, lang="en", country="ke",
+                              sort=Sort.NEWEST, count=200,
+                              continuation_token=token)
+        if not rows:
+            break
+        all_rows += rows
+        time.sleep(1)  # be polite to the server
+    cols = ["reviewId", "content", "score", "thumbsUpCount", "at",
+            "reviewCreatedVersion"]
+    df = pd.DataFrame(all_rows).reindex(columns=cols)
     df["brand"] = brand
     return df
 
